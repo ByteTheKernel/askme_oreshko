@@ -32,7 +32,7 @@
                     <div class="col-md-3 d-flex justify-content-end align-items-center">
                         {% if user.is_authenticated %}
                             <!-- Displayed for authenticated users -->
-                            <img src="{% static 'img/default_avatar.png' %}" alt="User Avatar" class="user-avatar" />
+                            <img src="{{ user.profile.avatar.url }}" alt="User Avatar" class="user-avatar" />
                             <span class="me-2">{{ user.username }}</span> | 
                             <a href="{% url 'app:settings' %}" class="me-2">Настройки</a> | 
                             <a href="{% url 'app:logout' %}">Выйти</a>

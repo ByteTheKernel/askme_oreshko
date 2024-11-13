@@ -1,5 +1,7 @@
 from django.urls import path
 from app import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 app_name = 'app'
@@ -13,5 +15,5 @@ urlpatterns = [
     path('signup/', views.signup_view, name='signup'),
     path('ask/', views.ask_question, name='ask'),
     path('settings/', views.settings_view, name='settings'),
-    
-]
+    path('logout/', views.logout_view, name='logout'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

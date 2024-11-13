@@ -4,13 +4,13 @@
     <div class="d-flex align-items-start">
         <div class="me-3">
             <!-- Avatar for answer -->
-            <img src="{% static 'img/default_avatar.png' %}" alt="User Avatar" class="avatar-answer">
+            <img src="{{ answer.author.profile.avatar.url }}" alt="User Avatar" class="avatar-answer">
         </div>
         <div class="w-100">
             <p>{{ answer.content }}</p>
             <div class="d-flex justify-content-between">
                 <div class="vote-buttons">
-                    <button class="btn btn-outline-secondary btn-sm">{{ answer.votes }}</button>
+                    <button class="btn btn-outline-secondary btn-sm">{{ answer.likes_count }}</button>
                     <button class="btn btn-outline-primary btn-sm">👍</button>
                     <button class="btn btn-outline-danger btn-sm">👎</button>
                 </div>

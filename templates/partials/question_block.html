@@ -4,10 +4,10 @@
 <div class="d-flex mb-4">
     <!-- Avatar for question -->
     <div class="me-3">
-        <img src="{% static 'img/default_avatar.png' %}" alt="User Avatar" class="avatar-question">
+        <img src="{{ question.author.profile.avatar.url }}" alt="User Avatar" class="avatar-question">
         <!-- Voting block for the question -->
         <div class="vote-buttons mt-2">
-            <button class="btn btn-outline-secondary btn-sm">{{ question.votes }}</button>
+            <button class="btn btn-outline-secondary btn-sm">{{ question.likes_count }}</button>
             <button class="btn btn-outline-primary btn-sm">👍</button>
             <button class="btn btn-outline-danger btn-sm">👎</button>
         </div>
@@ -18,7 +18,7 @@
         <h2>{{ question.title }}</h2>
         <p>{{ question.content }}</p>
         <p><strong>Tags:</strong> 
-            {% for tag in question.tags %}
+            {% for tag in question.tags.all %}
                 <a href="{% url 'app:tag' tag_name=tag %}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
             {% endfor %}
         </p>
