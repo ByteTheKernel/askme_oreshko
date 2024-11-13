@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+{% block title %}AskPupkin - Login{% endblock %}
+
+{% block content %}
+<h1>Вход</h1>
+<form>
+    <div class="mb-3">
+        <label for="login" class="form-label">Логин</label>
+        <input type="text" class="form-control" id="login" placeholder="Введите ваш логин">
+        <small class="form-text error-message"></small>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Пароль</label>
+        <input type="password" class="form-control" id="password" placeholder="Введите пароль">
+        <small class="form-text error-message"></small>
+    </div>
+    <button type="submit" class="btn btn-primary">Войти</button>
+    <div class="mt-2">
+        <a href="#">Создать новый аккаунт</a>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+{% block title %}Tag Questions - AskPupkin{% endblock %}
+
+{% block content %}
+    <div class="d-flex gap-3 align-items-center">
+        <h1>Tag: {{ tag }}</h1>
+    </div>
+
+    <!-- List of questions -->
+    {% for tag_question in tag_questions %}
+        {% include "partials/question.html" with question=tag_question %}
+    {% endfor %}
+
+    <!-- Pagination -->
+    {% include "partials/pagination.html" with page=page %}
+{% endblock %}

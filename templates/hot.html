@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+{% block title %}Hot Questions - AskPupkin{% endblock %}
+
+{% block content %}
+    <div class="d-flex gap-3 align-items-center">
+        <h1>Hot Questions</h1>
+        <a href="{% url 'app:home' %}">New Questions</a>
+    </div>
+
+    <!-- List of questions -->
+    {% for hot_question in hot_questions %}
+        {% include "partials/question.html" with question=hot_question %}
+    {% endfor %}
+
+    <!-- Pagination -->
+    {% include "partials/pagination.html" with page=page %}
+{% endblock %}

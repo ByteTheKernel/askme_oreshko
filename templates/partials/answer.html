@@ -1,0 +1,26 @@
+{% load static %}
+
+<div class="answer-box">
+    <div class="d-flex align-items-start">
+        <div class="me-3">
+            <!-- Avatar for answer -->
+            <img src="{% static 'img/default_avatar.png' %}" alt="User Avatar" class="avatar-answer">
+        </div>
+        <div class="w-100">
+            <p>{{ answer.content }}</p>
+            <div class="d-flex justify-content-between">
+                <div class="vote-buttons">
+                    <button class="btn btn-outline-secondary btn-sm">{{ answer.votes }}</button>
+                    <button class="btn btn-outline-primary btn-sm">👍</button>
+                    <button class="btn btn-outline-danger btn-sm">👎</button>
+                </div>
+                <div class="form-check checkbox-correct">
+                    <input class="form-check-input" type="checkbox" value="" id="correct{{ answer.id }}" {% if answer.is_correct %}checked{% endif %}>
+                    <label class="form-check-label" for="correct{{ answer.id }}">
+                        Correct!
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

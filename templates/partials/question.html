@@ -1,0 +1,32 @@
+{% load static %}
+
+<div class="question mb-3 p-3 border rounded">
+    <div class="d-flex align-items-start">
+        <div class="avatar-vote-container d-flex flex-column align-items-center me-3">
+            <div class="avatar-container">
+                <img src="{% static 'img/default_avatar.png' %}" alt="User Avatar" class="user-avatar">
+            </div>
+            <div class="vote-buttons mt-2 d-flex justify-content-center">
+                <span class="me-2">{{ question.votes }}</span>
+                <button class="btn btn-outline-primary btn-sm me-2">👍</button>
+                <button class="btn btn-outline-danger btn-sm">👎</button>
+            </div>
+        </div>
+        <div class="flex-grow-1">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    <a href="{% url 'app:question_detail' question_id=question.id %}" class="text-decoration-underline text-primary">
+                        {{ question.title }}
+                    </a>
+                </h5>
+            </div>
+            <p>{{ question.content }}</p>
+            <a href="{% url 'app:question_detail' question_id=question.id %}">Ответов ({{ question.answers_count }})</a> | 
+            <span>Теги: 
+                {% for tag in question.tags %}
+                    <a href="{% url 'app:tag' tag_name=tag %}" class="text-decoration-underline text-primary">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </span>
+        </div>
+    </div>
+</div>

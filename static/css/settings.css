@@ -1,0 +1,24 @@
+.user-avatar {
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+    margin-right: 8px; 
+}
+body, html {
+    height: 100%;
+    margin: 0;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.content {
+    flex: 1;
+}
+.avatar-preview {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}

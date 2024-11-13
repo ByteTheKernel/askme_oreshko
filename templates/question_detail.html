@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/question_detail.css' %}">
+
+{% block title %}Question Details{% endblock %}
+
+{% block content %}
+    <!-- Question block -->
+    {% include "partials/question_block.html" with question=question %}
+
+    <!-- Answers section -->
+    <h3>Answers:</h3>
+    {% for answer in answers %}
+        {% include "partials/answer.html" with answer=answer %}
+    {% empty %}
+        <p>No answers yet. Be the first to answer!</p>
+    {% endfor %}
+
+    <!-- Pagination for answers -->
+    {% include "partials/pagination.html" with page=page %}
+
+    <!-- Включение формы ответа -->
+    {% include "partials/answer_form.html" %}
+
+{% endblock %}

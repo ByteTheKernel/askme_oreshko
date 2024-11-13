@@ -1,0 +1,19 @@
+.user-avatar {
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+}
+.vote-buttons {
+    display: flex;
+    align-items: center;
+}
+.vote-buttons span {
+    margin-right: 10px; 
+}
+.vote-buttons button {
+    margin-right: 5px; 
+}
+.btn-sm {
+    font-size: 0.875rem;
+}
