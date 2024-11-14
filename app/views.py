@@ -7,7 +7,7 @@ from django.shortcuts import redirect
 
 
 def home(request):
-    # Получаем все вопросы, отсортированные по дате создания (или используем кастомный менеджер)
+    # Получаем все вопросы, отсортированные по дате создания
     questions = Question.objects.new_questions()
     
     # Пагинируем вопросы
