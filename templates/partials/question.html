@@ -4,7 +4,7 @@
     <div class="d-flex align-items-start">
         <div class="avatar-vote-container d-flex flex-column align-items-center me-3">
             <div class="avatar-container">
-                <img src="{% static 'img/default_avatar.png' %}" alt="User Avatar" class="user-avatar">
+                <img src="{{ question.author.profile.avatar.url }}" alt="User Avatar" class="user-avatar">
             </div>
             <div class="vote-buttons mt-2 d-flex justify-content-center">
                 <span class="me-2">{{ question.likes_count }}</span>

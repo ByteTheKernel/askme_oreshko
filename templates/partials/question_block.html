@@ -4,7 +4,7 @@
 <div class="d-flex mb-4">
     <!-- Avatar for question -->
     <div class="me-3">
-        <img src="{% static 'img/default_avatar.png' %}" alt="User Avatar" class="avatar-question">
+        <img src="{{ question.author.profile.avatar.url }}" alt="User Avatar" class="avatar-question">
         <!-- Voting block for the question -->
         <div class="vote-buttons mt-2">
             <button class="btn btn-outline-secondary btn-sm">{{ question.likes_count }}</button>
