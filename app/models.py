@@ -43,9 +43,11 @@ class Question(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
-    @property
     def likes_count(self):
         return self.liked_by.count()  # Количество лайков для вопроса
+    
+    def answers_count(self):
+        return self.answers.count()
 
     objects = QuestionManager()  # Используем кастомный менеджер
 
@@ -66,7 +68,6 @@ class Answer(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
-    @property
     def likes_count(self):
         return self.liked_by.count()  # Количество лайков для ответа
     
