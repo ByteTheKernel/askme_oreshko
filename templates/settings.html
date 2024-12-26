@@ -7,33 +7,29 @@
 {% block title %}AskPupkin Settings{% endblock %}
 
 {% block content %}
-<h1>Настройки: Dr. Pepper</h1>
-<form>
-    <div class="form-group mb-3">
-        <label for="login">Логин</label>
-        <input type="text" class="form-control" id="login" value="dr_pepper">
-    </div>
-    <div class="form-group mb-3">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" value="dr.pepper@mail.ru">
-        <small class="form-text text-danger"></small>
-    </div>
-    <div class="form-group mb-3">
-        <label for="nickname">NickName</label>
-        <input type="text" class="form-control" id="nickname" value="Dr. Pepper">
-    </div>
+<h1>Редактирование профиля</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <!-- Вывод ошибок формы -->
+    {% for field in form %}
+        <div class="mb-3">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.errors %}
+                <div class="form-text text-danger">
+                    {{ field.errors.0 }}
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
 
-    <!-- Avatar Section -->
-    <div class="form-group mb-3">
-        <label>Текущий аватар</label><br>
-        <img src="current_avatar.png" class="avatar-preview" alt="Текущий аватар" 
+    <!-- Предпросмотр аватара -->
+    <div class="mb-3">
+        <label>Текущий аватар:</label><br>
+        <img src="{{ user.profile.avatar.url }}" class="avatar-preview" alt="Текущий аватар"
              onerror="this.src='{% static 'img/default_avatar.png' %}';">
     </div>
-    <div class="mb-3">
-        <label for="avatar" class="form-label">Выбрать другой аватар</label>
-        <input type="file" class="form-control" id="avatar">
-    </div>
-
+    
     <button type="submit" class="btn btn-primary">Сохранить</button>
 </form>
 {% endblock %}

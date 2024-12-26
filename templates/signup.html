@@ -6,33 +6,20 @@
 
 {% block content %}
 <h1>Регистрация</h1>
-<form>
-    <div class="mb-3">
-        <label for="login" class="form-label">Логин</label>
-        <input type="text" class="form-control" id="login" placeholder="Введите логин">
-    </div>
-    <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" placeholder="Введите email">
-        <div class="form-text text-danger"></div>
-    </div>
-    <div class="mb-3">
-        <label for="nickname" class="form-label">Никнейм</label>
-        <input type="text" class="form-control" id="nickname" placeholder="Введите никнейм">
-        <div class="form-text text-danger"></div>
-    </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">Пароль</label>
-        <input type="password" class="form-control" id="password" placeholder="Введите пароль">
-    </div>
-    <div class="mb-3">
-        <label for="repeat-password" class="form-label">Повторите пароль</label>
-        <input type="password" class="form-control" id="repeat-password" placeholder="Повторите пароль">
-    </div>
-    <div class="mb-3">
-        <label for="avatar" class="form-label">Загрузить аватар</label>
-        <input type="file" class="form-control" id="avatar">
-    </div>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <!-- Вывод ошибок формы -->
+    {% for field in form %}
+        <div class="mb-3">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.errors %}
+                <div class="form-text text-danger">
+                    {{ field.errors.0 }}
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
     <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
 </form>
 {% endblock %}

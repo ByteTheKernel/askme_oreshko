@@ -11,6 +11,7 @@ urlpatterns = [
     path('hot/', views.hot_questions, name='hot'),
     path('tag/<str:tag_name>', views.tag_questions, name='tag'),
     path('question/<int:question_id>/', views.question_detail, name='question_detail'),
+    path('question/<int:question_id>/add-answer/', views.add_answer, name='add_answer'),
     path('login/', views.login_view, name='login'),
     path('signup/', views.signup_view, name='signup'),
     path('ask/', views.ask_question, name='ask'),

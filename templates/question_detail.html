@@ -13,7 +13,9 @@
     <!-- Answers section -->
     <h3>Answers:</h3>
     {% for answer in answers %}
-        {% include "partials/answer.html" with answer=answer %}
+        <div id="answer-{{ answer.id }}" class="answer">
+            {% include "partials/answer.html" with answer=answer %}
+        </div>
     {% empty %}
         <p>No answers yet. Be the first to answer!</p>
     {% endfor %}
@@ -22,6 +24,11 @@
     {% include "partials/pagination.html" with page=page %}
 
     <!-- Включение формы ответа -->
-    {% include "partials/answer_form.html" %}
-
+    {% if user.is_authenticated %}
+        {% include "partials/answer_form.html" with form=form question=question %}
+    {% else %}
+        <p>
+            <a href="{% url 'app:login' %}">Войдите</a>, чтобы оставить ответ.
+        </p>
+    {% endif %}
 {% endblock %}

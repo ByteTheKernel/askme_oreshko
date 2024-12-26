@@ -7,20 +7,22 @@
 {% block title %}New Question - AskPupkin{% endblock %}
 
 {% block content %}
-<h2>New Question</h2>
-<form>
-    <div class="mb-3">
-        <label for="title" class="form-label">Title</label>
-        <input type="text" class="form-control input-field" id="title" maxlength="100">
-    </div>
-    <div class="mb-3">
-        <label for="text" class="form-label">Text</label>
-        <textarea class="form-control input-field" id="text" rows="5" maxlength="500"></textarea>
-    </div>
-    <div class="mb-3">
-        <label for="tags" class="form-label">Tags</label>
-        <input type="text" class="form-control input-field" id="tags" maxlength="50">
-    </div>
-    <button type="submit" class="btn btn-primary">ASK!</button>
+<h2>Добавить вопрос</h2>
+<form method="post">
+    {% csrf_token %}
+    <!-- Вывод ошибок формы -->
+    {% for field in form %}
+        <div class="mb-3">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.help_text %}
+            <small class="form-text text-muted">{{ field.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+                <div class="form-text text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Опубликовать</button>
 </form>
 {% endblock %}

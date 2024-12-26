@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load django_bootstrap5 %}
+
 {% load static %}
 
 <link rel="stylesheet" href="{% static 'css/login.css' %}">
@@ -8,20 +10,25 @@
 
 {% block content %}
 <h1>Вход</h1>
-<form>
+<form method="post" action="?continue={{ continue }}">
+    {% csrf_token %}
+
+    <!-- Поле логина -->
     <div class="mb-3">
-        <label for="login" class="form-label">Логин</label>
-        <input type="text" class="form-control" id="login" placeholder="Введите ваш логин">
-        <small class="form-text error-message"></small>
+        {% bootstrap_field form.username %}
     </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">Пароль</label>
-        <input type="password" class="form-control" id="password" placeholder="Введите пароль">
-        <small class="form-text error-message"></small>
-    </div>
+
+    <!-- Поле пароля -->
+     {% with form=form %}
+     {% include "partials/password_field.html" with label="Пароль" %}
+     {% endwith %}
+
+    <!-- Кнопка отправки -->
     <button type="submit" class="btn btn-primary">Войти</button>
+    
+    <!-- Ссылка на создание аккаунта -->
     <div class="mt-2">
-        <a href="#">Создать новый аккаунт</a>
+        <a href="{% url 'app:signup' %}">Создать новый аккаунт</a>
     </div>
 </form>
 {% endblock %}

@@ -1,7 +1,21 @@
 {% load static %}
 
-<!-- answer_form.html -->
+<!-- Форма ответа -->
 <div class="form-answer mt-4">
-    <textarea class="form-control" rows="3" placeholder="Enter your answer here..."></textarea>
-    <button type="submit" class="btn btn-primary mt-2">Answer</button>
+    <form method="post" action="{% url 'app:add_answer' question.id %}">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        
+        {% for field in form %}
+            <div class="mb-3">
+                {{ field.label_tag }}
+                {{ field }}
+                {% for error in field.errors %}
+                    <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        
+        <button type="submit" class="btn btn-primary mt-2">Добавить ответ</button>
+    </form>
 </div>
